@@ -1,3 +1,7 @@
+## Python
+**/__pycache__/**
+.venv
+
 ## VS Code
 ## https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
 .vscode/*
@@ -310,7 +314,7 @@ node_modules/
 *.dsw
 *.dsp
 
-# Visual Studio 6 technical files 
+# Visual Studio 6 technical files
 *.ncb
 *.aps
 

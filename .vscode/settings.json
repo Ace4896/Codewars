@@ -3,6 +3,8 @@
   "editor.formatOnType": true,
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
+  "python.formatting.provider": "black",
+
   "[csharp]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp"
   },

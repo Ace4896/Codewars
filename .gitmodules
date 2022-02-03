@@ -1,0 +1,3 @@
+[submodule "Python/python-test-framework"]
+	path = Python/python-test-framework
+	url = https://github.com/codewars/python-test-framework.git
