@@ -28,13 +28,13 @@ For Python, some additional setup is required:
   source .venv/bin/activate   # Bash
   .venv/Scripts/Activate      # Powershell
   ```
-- Then, install the packages from the `requirements.txt`:
+- Then, install the packages from `requirements.txt`:
   ```bash
   pip install -r ./Python/requirements.txt
   ```
-- Finally, install `codewars-test` from the submodule:
+- Finally, install `codewars-test` from the Git submodule:
   ```bash
   cd Python/python-test-framework
   python setup.py install
   ```
-  The build artifacts can be safely removed after installation.
+  **NOTE**: The build artifacts can be safely removed after installation.
