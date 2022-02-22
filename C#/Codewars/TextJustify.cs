@@ -1,9 +1,8 @@
 ﻿// Goal of this one is to convert a singleline string and apply "justify" formatting with the specified width.
-// If there is only one word on a line, then just need to pad spaces to the end of it.
+// If there is only one word on a line, then no need to add spaces at the end.
 
 namespace Codewars
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
