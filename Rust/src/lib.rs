@@ -1,6 +1,7 @@
 #![allow(dead_code)]
 
 mod ease_the_stockbroker;
+mod irreducible_sum_of_rationals;
 mod john_ann_codewars;
 mod last_digit_large_num;
 mod longest_vowel_chain;
