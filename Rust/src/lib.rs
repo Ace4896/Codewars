@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 
+mod braking_well;
 mod ease_the_stockbroker;
 mod irreducible_sum_of_rationals;
 mod john_ann_codewars;
