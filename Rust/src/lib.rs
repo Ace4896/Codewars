@@ -3,6 +3,7 @@
 mod ease_the_stockbroker;
 mod john_ann_codewars;
 mod last_digit_large_num;
+mod longest_vowel_chain;
 mod magnitude;
 mod remove_first_and_last_character;
 mod split_strings;
