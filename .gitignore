@@ -2,6 +2,9 @@
 **/__pycache__/**
 .venv
 
+## Rust
+Rust/target
+
 ## VS Code
 ## https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
 .vscode/*
