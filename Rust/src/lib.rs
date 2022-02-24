@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 
+mod ease_the_stockbroker;
 mod john_ann_codewars;
 mod last_digit_large_num;
 mod magnitude;
