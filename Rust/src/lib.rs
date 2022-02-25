@@ -10,6 +10,7 @@ mod magnitude;
 mod remove_first_and_last_character;
 mod split_strings;
 mod sums_of_parts;
+mod tiny_three_pass_compiler;
 mod two_oldest_ages;
 mod vowel_count;
 mod weight_for_weight;
