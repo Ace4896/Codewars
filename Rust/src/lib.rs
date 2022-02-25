@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 
+mod assembler_interpreter_i;
 mod braking_well;
 mod ease_the_stockbroker;
 mod irreducible_sum_of_rationals;
@@ -9,7 +10,6 @@ mod longest_vowel_chain;
 mod magnitude;
 mod meeting;
 mod remove_first_and_last_character;
-mod simple_assembler_interpreter;
 mod split_strings;
 mod strings_mix;
 mod sums_of_parts;
