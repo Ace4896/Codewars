@@ -12,10 +12,10 @@
 //! The original grammar is this, where `function` is the top-level rule:
 //!
 //! ```
-//! function   ::= '[' arg-list ']' expression
+//! function   ::= '[' arg_list ']' expression
 //!
-//! arg-list   ::= /* nothing */
-//!              | variable arg-list
+//! arg_list   ::= /* nothing */
+//!              | variable arg_list
 //!
 //! expression ::= term
 //!              | expression '+' term
@@ -30,12 +30,14 @@
 //!              | '(' expression ')'
 //! ```
 //!
+//! Note that commas between variables in arg_list are missing - this needed to be dealt with.
 //! This can be implemented using an LL(1) parser; this require removing left recursion first (where `e` is epsilon / empty string):
 //!
 //! ```
-//! function     ::= '[' arg-list ']' expression
+//! function     ::= '[' arg_list ']' expression
 //!
-//! arg-list     ::= variable arg-list
+//! arg_list     ::= variable arg_list_p
+//! arg_list_p   ::= ',' variable arg_list_p
 //!                | e
 //!
 //! expression   ::= term expression_p
@@ -53,6 +55,7 @@
 //!                | '(' expression ')'
 //! ```
 //!
+//! TODO: I never ended up using this - parsing is much simpler than I thought
 //! This requires the FIRST and FOLLOW sets:
 //!
 //! ```
@@ -60,7 +63,8 @@
 //! FIRST(variable)     = char
 //!
 //! FIRST(function)     = [
-//! FIRST(arg-list)     = FIRST(variable), e = char, e
+//! FIRST(arg_list)     = FIRST(variable), e = char, e
+//! FIRST(arg_list_p)   = ',', e
 //! FIRST(expression)   = FIRST(term) = digit, char, (
 //! FIRST(expression_p) = +, -, e
 //! FIRST(term)         = FIRST(factor) = digit, char, (
@@ -68,7 +72,8 @@
 //! FIRST(factor)       = digit, char, (
 //!
 //! FOLLOW(function)     = EOL
-//! FOLLOW(arg-list)     = ], (FIRST(arg-list) - e) = ], char
+//! FOLLOW(arg_list)     = ]
+//! FOLLOW(arg_list_p)   =
 //! FOLLOW(expression)   = ), EOL
 //! FOLLOW(expression_p) = FOLLOW(expression) = ), EOL
 //! FOLLOW(term)         = (FIRST(expression_p - e)), FOLLOW(expression) = +, -, ), EOL
@@ -85,12 +90,12 @@ enum Ast {
 }
 
 struct Compiler {
-    args: Option<Vec<String>>,
+    args: Vec<String>,
 }
 
 impl Compiler {
     fn new() -> Compiler {
-        Compiler { args: None }
+        Compiler { args: Vec::new() }
     }
 
     fn tokenize<'a>(&self, program: &'a str) -> Vec<String> {
@@ -138,13 +143,13 @@ impl Compiler {
         let tokens = self.tokenize(program);
         let mut iter = tokens.iter().peekable();
 
-        // Top-level rule: Parse [ arg-list ] expression
+        // Top-level rule: Parse [ arg_list ] expression
         // The AST for the top-level expression is what we're after, so return that
         if iter.next().expect("Iterator is empty!") != "[" {
             panic!("Expected '[' to start argument list");
         }
 
-        self.args = Some(self.parse_arg_list(&mut iter));
+        self.args = self.parse_arg_list(&mut iter);
 
         if iter.next().expect("Expected ']' after argument list") != "]" {
             panic!("Expected ']' after argument list");
@@ -153,21 +158,33 @@ impl Compiler {
         self.parse_expression(&mut iter)
     }
 
+    /// arg_list     ::= variable arg_list_p
+    /// arg_list_p   ::= ',' variable arg_list_p
+    ///                | e
     fn parse_arg_list<'a>(
         &self,
         iter: &mut Peekable<impl Iterator<Item = &'a String>>,
     ) -> Vec<String> {
-        // Parsing arguments is straightforward - can just loop until we have no more variables
+        // The two production rules can be parsed in-line - no need for recursion
         let mut arguments = Vec::new();
-        while let Some(token) = iter.next() {
-            if token == "]" {
-                break;
+
+        match iter.peek().expect("Incomplete argument list").as_str() {
+            // No arguments provided
+            "]" => arguments,
+            _ => {
+                // Parse the argument
+                arguments.push(iter.next().unwrap().clone());
+
+                // Keep parsing arguments while the next token is a ','
+                while iter.peek().expect("Incomplete argument list").as_str() == "," {
+                    // Consume the ',', then parse the argument
+                    iter.next().unwrap();
+                    arguments.push(iter.next().unwrap().clone());
+                }
+
+                arguments
             }
-
-            arguments.push(token.clone());
         }
-
-        arguments
     }
 
     /// expression   ::= term expression_p
@@ -175,7 +192,8 @@ impl Compiler {
         &mut self,
         iter: &mut Peekable<impl Iterator<Item = &'a String>>,
     ) -> Ast {
-        todo!()
+        let lhs = self.parse_term(iter);
+        self.parse_expression_p(iter, lhs)
     }
 
     /// expression_p ::= '+' term expression_p
@@ -184,20 +202,87 @@ impl Compiler {
     fn parse_expression_p<'a>(
         &mut self,
         iter: &mut Peekable<impl Iterator<Item = &'a String>>,
+        lhs: Ast,
     ) -> Ast {
-        todo!()
+        if matches!(iter.peek().map(|s| s.as_str()), Some("+") | Some("-")) {
+            // TODO: This performs a rightmost derivation, which is incorrect for division
+            let op = iter.next().unwrap();
+            let rhs = self.parse_term(iter);
+
+            // If this additive expression continues, use rhs as the "lhs" for that subtree
+            let subtree = self.parse_expression_p(iter, rhs);
+
+            Ast::BinOp(op.clone(), Box::new(lhs), Box::new(subtree))
+        } else {
+            lhs
+        }
     }
 
     /// term         ::= factor term_p
     fn parse_term<'a>(&mut self, iter: &mut Peekable<impl Iterator<Item = &'a String>>) -> Ast {
-        todo!()
+        let lhs = self.parse_factor(iter);
+        self.parse_term_p(iter, lhs)
     }
 
     /// term_p       ::= '*' factor term_p
     ///                | '/' factor term_p
     ///                | e
-    fn parse_term_p<'a>(&mut self, iter: &mut Peekable<impl Iterator<Item = &'a String>>) -> Ast {
-        todo!()
+    fn parse_term_p<'a>(
+        &mut self,
+        iter: &mut Peekable<impl Iterator<Item = &'a String>>,
+        lhs: Ast,
+    ) -> Ast {
+        if matches!(iter.peek().map(|s| s.as_str()), Some("*") | Some("/")) {
+            // TODO: This performs a rightmost derivation, which is incorrect for division
+            let op = iter.next().unwrap();
+            let rhs = self.parse_factor(iter);
+
+            // If this multiplicative expression continues, use rhs as the "lhs" for that subtree
+            let subtree = self.parse_expression_p(iter, rhs);
+
+            Ast::BinOp(op.clone(), Box::new(lhs), Box::new(subtree))
+        } else {
+            lhs
+        }
+    }
+
+    /// factor       ::= number
+    ///                | variable
+    ///                | '(' expression ')'
+    fn parse_factor<'a>(&mut self, iter: &mut Peekable<impl Iterator<Item = &'a String>>) -> Ast {
+        match iter
+            .next()
+            .expect("Incomplete arithmetic expression")
+            .as_str()
+        {
+            // Immediate integer value
+            n if n.chars().all(|c| c.is_ascii_digit()) => {
+                let imm_val = n
+                    .parse::<i32>()
+                    .expect("Could not parse immediate value into i32!");
+
+                Ast::UnOp("imm".to_string(), imm_val)
+            }
+            // Variable reference
+            n if n.chars().all(|c| c.is_ascii_alphabetic()) => {
+                let var_index = self
+                    .args
+                    .iter()
+                    .position(|arg| arg == n)
+                    .expect("Non-existent variable used") as i32;
+
+                Ast::UnOp("arg".to_string(), var_index)
+            }
+            // Subexpression
+            "(" => {
+                // Parse the subtree and consume the right parenthesis
+                let subtree = self.parse_expression(iter);
+                iter.next().unwrap();
+
+                subtree
+            }
+            _ => panic!("Expected integer, variable or parenthesised subexpression"),
+        }
     }
 
     fn pass2(&mut self, ast: &Ast) -> Ast {
@@ -213,18 +298,106 @@ impl Compiler {
 mod tests {
     use super::*;
 
-    #[test]
-    fn pass1_simple_program_works() {
-        let mut compiler = Compiler::new();
-        let actual_ast = compiler.pass1("[ x, y ] x + y");
-        let expected_ast = Ast::BinOp(
+    macro_rules! pass1_test {
+        ($name:ident, $program:expr, $expected_args:expr, $expected_ast:expr) => {
+            #[test]
+            fn $name() {
+                let mut compiler = Compiler::new();
+
+                let actual_ast = compiler.pass1($program);
+
+                assert_eq!(actual_ast, $expected_ast);
+                assert_eq!(&compiler.args, &$expected_args);
+            }
+        };
+    }
+
+    pass1_test!(
+        simple_program,
+        "[ x ] x + 5",
+        ["x"],
+        Ast::BinOp(
             "+".to_string(),
             Box::new(Ast::UnOp("arg".to_string(), 0)),
-            Box::new(Ast::UnOp("arg".to_string(), 1)),
-        );
+            Box::new(Ast::UnOp("imm".to_string(), 5)),
+        )
+    );
 
-        assert_eq!(actual_ast, expected_ast);
-    }
+    pass1_test!(
+        multiple_adds_subs,
+        "[ x ] x + 5 - 2 + 4",
+        ["x"],
+        Ast::BinOp(
+            "+".to_string(),
+            Box::new(Ast::BinOp(
+                "-".to_string(),
+                Box::new(Ast::BinOp(
+                    "+".to_string(),
+                    Box::new(Ast::UnOp("arg".to_string(), 0)),
+                    Box::new(Ast::UnOp("imm".to_string(), 5)),
+                )),
+                Box::new(Ast::UnOp("imm".to_string(), 2)),
+            )),
+            Box::new(Ast::UnOp("imm".to_string(), 4)),
+        )
+    );
+
+    pass1_test!(
+        multiple_muls_divs,
+        "[ x ] x * 5 / 4 * 2",
+        ["x"],
+        Ast::BinOp(
+            "*".to_string(),
+            Box::new(Ast::BinOp(
+                "/".to_string(),
+                Box::new(Ast::BinOp(
+                    "*".to_string(),
+                    Box::new(Ast::UnOp("arg".to_string(), 0)),
+                    Box::new(Ast::UnOp("imm".to_string(), 5)),
+                )),
+                Box::new(Ast::UnOp("imm".to_string(), 4)),
+            )),
+            Box::new(Ast::UnOp("imm".to_string(), 2)),
+        )
+    );
+
+    pass1_test!(
+        mixed_add_mul,
+        "[ ] 1 * 2 + 3 * 4",
+        Vec::<String>::new(),
+        Ast::BinOp(
+            "+".to_string(),
+            Box::new(Ast::BinOp(
+                "*".to_string(),
+                Box::new(Ast::UnOp("imm".to_string(), 1)),
+                Box::new(Ast::UnOp("imm".to_string(), 2)),
+            )),
+            Box::new(Ast::BinOp(
+                "*".to_string(),
+                Box::new(Ast::UnOp("imm".to_string(), 3)),
+                Box::new(Ast::UnOp("imm".to_string(), 4)),
+            )),
+        )
+    );
+
+    pass1_test!(
+        parenthesised_expression,
+        "[ ] ( 1 + 2 ) * ( 4 - 3 )",
+        Vec::<String>::new(),
+        Ast::BinOp(
+            "*".to_string(),
+            Box::new(Ast::BinOp(
+                "+".to_string(),
+                Box::new(Ast::UnOp("imm".to_string(), 1)),
+                Box::new(Ast::UnOp("imm".to_string(), 2)),
+            )),
+            Box::new(Ast::BinOp(
+                "-".to_string(),
+                Box::new(Ast::UnOp("imm".to_string(), 4)),
+                Box::new(Ast::UnOp("imm".to_string(), 3)),
+            )),
+        )
+    );
 
     #[test]
     fn simulator() {
