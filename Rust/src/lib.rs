@@ -9,6 +9,7 @@ mod longest_vowel_chain;
 mod magnitude;
 mod meeting;
 mod remove_first_and_last_character;
+mod simple_assembler_interpreter;
 mod split_strings;
 mod strings_mix;
 mod sums_of_parts;
