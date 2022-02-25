@@ -41,9 +41,6 @@ mod tests {
 
     #[test]
     fn test_john() {
-        dbg!(john(30));
-        assert!(false);
-
         assert_eq!(john(11), vec![0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6]);
         assert_eq!(john(14), vec![0, 0, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 7, 8]);
     }
