@@ -1,6 +1,7 @@
 #![allow(dead_code)]
 
 mod assembler_interpreter_i;
+mod assembler_interpreter_ii;
 mod braking_well;
 mod ease_the_stockbroker;
 mod irreducible_sum_of_rationals;
