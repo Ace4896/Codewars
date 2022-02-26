@@ -6,6 +6,8 @@ This repository contains my solutions to various [Codewars](https://www.codewars
 
 - C\#: .NET 6.0 or above
   - As of 2022-01-31, Codewars uses C# 8.0.
+- JavaScript/TypeScript: NodeJS v14.0 or above
+  - As of 2022-02-26, Codewars uses NodeJS v14.0 and TypeScript 3.8.
 - Python: 3.8 or above
   - As of 2022-02-03, Codewars uses Python 3.8.
 - Rust: 1.58 or above
@@ -20,6 +22,8 @@ git clone --recurse-submodules git@github.com:Ace4896/codewars.git
 ```
 
 For C#, the `Codewars.sln` solution can just be used as normal (preferably with Visual Studio or Rider).
+
+For JavaScript and TypeScript, use `npm test` to run the unit tests.
 
 For Python, some additional setup is required:
 

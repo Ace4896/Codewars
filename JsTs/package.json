@@ -1,0 +1,36 @@
+{
+  "name": "codewars",
+  "version": "1.0.0",
+  "description": "JavaScript and TypeScript solutions to various Codewars challenges.",
+  "author": "Jon Pacheco",
+  "homepage": "https://github.com/Ace4896/Codewars#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ace4896/Codewars.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ace4896/Codewars/issues"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "directories": {
+    "src": "./src",
+    "test": "./src"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "chai": "^4.3.6",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.4.0",
+    "mocha": "^9.2.1",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.5.0",
+    "typescript": "3.8"
+  }
+}

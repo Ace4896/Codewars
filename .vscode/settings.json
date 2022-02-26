@@ -11,6 +11,9 @@
   "[python]": {
     "editor.defaultFormatter": "ms-python.python"
   },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[json]": {
     "editor.quickSuggestions": {
       "strings": true
@@ -23,6 +26,9 @@
       "strings": true
     },
     "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
