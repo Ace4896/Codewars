@@ -19,6 +19,7 @@ mod split_strings;
 mod strings_mix;
 mod sums_of_parts;
 mod two_oldest_ages;
+mod url_shortener;
 mod vowel_count;
 mod weight_for_weight;
 mod what_century;
