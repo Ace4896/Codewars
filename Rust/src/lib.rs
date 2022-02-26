@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 
+mod are_they_the_same;
 mod assembler_interpreter_i;
 mod assembler_interpreter_ii;
 mod braking_well;
