@@ -28,14 +28,9 @@
 //!               | function expr
 //! ```
 
-use std::iter::Peekable;
-
-const BINARY_OPS: [&'static str; 5] = ["+", "-", "*", "/", "^"];
-const FUNCTIONS: [&'static str; 5] = ["sin", "cos", "tan", "exp", "ln"];
-
 /// AST representation of the mathematical expression.
 #[derive(Debug, PartialEq, Eq)]
-enum Ast {
+pub enum Ast {
     /// The variable `x` with a particular coefficient.
     X(i32),
 
@@ -51,7 +46,7 @@ enum Ast {
 
 /// Represents the supported binary operators.
 #[derive(Debug, PartialEq, Eq)]
-enum Operator {
+pub enum Operator {
     Add,
     Sub,
     Mul,
@@ -76,7 +71,7 @@ impl TryFrom<&str> for Operator {
 
 /// Represents the supported functions.
 #[derive(Debug, PartialEq, Eq)]
-enum Function {
+pub enum Function {
     Sin,
     Cos,
     Tan,
@@ -99,13 +94,8 @@ impl TryFrom<&str> for Function {
     }
 }
 
-#[inline]
-fn is_integer(s: &str) -> bool {
-    s.chars().all(|c| c.is_ascii_digit() || c == '-')
-}
-
 fn diff(expr: &str) -> String {
-    let ast = build_ast(expr);
+    let ast = parser::build_ast(expr);
     // TODO: AST Simplification
     // TODO: AST Differentation
     // TODO: AST -> Prefix Expression
@@ -113,63 +103,78 @@ fn diff(expr: &str) -> String {
     expr.to_string()
 }
 
-fn build_ast(expr: &str) -> Ast {
-    // To make parsing slightly easier, add a single space after '(' and before ')'
-    // This allows us to split the tokens by whitespace
-    let expr = expr.replace('(', "( ").replace(')', " )");
-    let mut iter = expr.split_whitespace().peekable();
+mod parser {
+    use std::iter::Peekable;
 
-    parse_expr(&mut iter)
-}
+    use super::{Ast, Function, Operator};
 
-fn parse_expr<'a>(iter: &mut Peekable<impl Iterator<Item = &'a str>>) -> Ast {
-    match *iter.peek().unwrap() {
-        x if x == "x" || is_integer(x) => parse_factor(iter),
-        "(" => {
-            // Consume left parenthesis, parse subexpression, and consume right parenthesis
-            iter.next();
-            let expr = parse_expr_p(iter);
-            iter.next();
+    const BINARY_OPS: [&'static str; 5] = ["+", "-", "*", "/", "^"];
+    const FUNCTIONS: [&'static str; 5] = ["sin", "cos", "tan", "exp", "ln"];
 
-            expr
-        }
-        t => panic!("Invalid token '{}' found in expression", t),
+    #[inline]
+    fn is_integer(s: &str) -> bool {
+        s.chars().all(|c| c.is_ascii_digit() || c == '-')
     }
-}
 
-fn parse_expr_p<'a>(iter: &mut Peekable<impl Iterator<Item = &'a str>>) -> Ast {
-    match *iter.peek().unwrap() {
-        x if BINARY_OPS.contains(&x) => {
-            let operator = Operator::try_from(x).unwrap();
-            iter.next();
+    pub fn build_ast(expr: &str) -> Ast {
+        // To make parsing slightly easier, add a single space after '(' and before ')'
+        // This allows us to split the tokens by whitespace
+        let expr = expr.replace('(', "( ").replace(')', " )");
+        let mut iter = expr.split_whitespace().peekable();
 
-            let lhs = parse_expr(iter);
-            let rhs = parse_expr(iter);
-
-            Ast::BinaryOp(operator, Box::new(lhs), Box::new(rhs))
-        }
-        x if FUNCTIONS.contains(&x) => {
-            let function = Function::try_from(x).unwrap();
-            iter.next();
-
-            let argument = parse_expr(iter);
-
-            Ast::Function(function, Box::new(argument))
-        }
-        t => panic!("Invalid token '{}' found in expression", t),
+        parse_expr(&mut iter)
     }
-}
 
-fn parse_factor<'a>(iter: &mut Peekable<impl Iterator<Item = &'a str>>) -> Ast {
-    match iter.next().unwrap() {
-        "x" => Ast::X(1),
-        x if is_integer(x) => Ast::Literal(x.parse::<i32>().unwrap()),
-        t => panic!("Cannot use '{}' as integer literal or variable", t),
+    fn parse_expr<'a>(iter: &mut Peekable<impl Iterator<Item = &'a str>>) -> Ast {
+        match *iter.peek().unwrap() {
+            x if x == "x" || is_integer(x) => parse_factor(iter),
+            "(" => {
+                // Consume left parenthesis, parse subexpression, and consume right parenthesis
+                iter.next();
+                let expr = parse_expr_p(iter);
+                iter.next();
+
+                expr
+            }
+            t => panic!("Invalid token '{}' found in expression", t),
+        }
+    }
+
+    fn parse_expr_p<'a>(iter: &mut Peekable<impl Iterator<Item = &'a str>>) -> Ast {
+        match *iter.peek().unwrap() {
+            x if BINARY_OPS.contains(&x) => {
+                let operator = Operator::try_from(x).unwrap();
+                iter.next();
+
+                let lhs = parse_expr(iter);
+                let rhs = parse_expr(iter);
+
+                Ast::BinaryOp(operator, Box::new(lhs), Box::new(rhs))
+            }
+            x if FUNCTIONS.contains(&x) => {
+                let function = Function::try_from(x).unwrap();
+                iter.next();
+
+                let argument = parse_expr(iter);
+
+                Ast::Function(function, Box::new(argument))
+            }
+            t => panic!("Invalid token '{}' found in expression", t),
+        }
+    }
+
+    fn parse_factor<'a>(iter: &mut Peekable<impl Iterator<Item = &'a str>>) -> Ast {
+        match iter.next().unwrap() {
+            "x" => Ast::X(1),
+            x if is_integer(x) => Ast::Literal(x.parse::<i32>().unwrap()),
+            t => panic!("Cannot use '{}' as integer literal or variable", t),
+        }
     }
 }
 
 #[cfg(test)]
 mod tests {
+    use super::parser::*;
     use super::*;
 
     macro_rules! diff_eq {
