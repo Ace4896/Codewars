@@ -6,6 +6,7 @@ mod assembler_interpreter_ii;
 mod braking_well;
 mod ease_the_stockbroker;
 mod evaluate_mathematical_expression;
+mod int32_ipv4;
 mod irreducible_sum_of_rationals;
 mod john_ann_codewars;
 mod last_digit_large_num;
