@@ -5,6 +5,7 @@ mod assembler_interpreter_i;
 mod assembler_interpreter_ii;
 mod braking_well;
 mod counting_duplicates;
+mod directions_reduction;
 mod ease_the_stockbroker;
 mod evaluate_mathematical_expression;
 mod int32_ipv4;
