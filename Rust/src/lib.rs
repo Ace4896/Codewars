@@ -4,6 +4,7 @@ mod are_they_the_same;
 mod assembler_interpreter_i;
 mod assembler_interpreter_ii;
 mod braking_well;
+mod counting_duplicates;
 mod ease_the_stockbroker;
 mod evaluate_mathematical_expression;
 mod int32_ipv4;
