@@ -8,6 +8,7 @@ mod counting_duplicates;
 mod directions_reduction;
 mod ease_the_stockbroker;
 mod evaluate_mathematical_expression;
+mod give_me_a_diamond;
 mod int32_ipv4;
 mod irreducible_sum_of_rationals;
 mod john_ann_codewars;
