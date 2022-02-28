@@ -7,28 +7,16 @@ enum Direction {
 }
 
 fn dir_reduc(arr: &[Direction]) -> Vec<Direction> {
-    if arr.len() <= 1 {
-        return arr.to_vec();
-    }
-
     let mut result = Vec::with_capacity(arr.len());
-    result.push(arr[0]);
-
-    for &next_direction in &arr[1..] {
-        if let Some(&last_direction) = result.last() {
-            if matches!(
-                (last_direction, next_direction),
-                (Direction::North, Direction::South)
-                    | (Direction::South, Direction::North)
-                    | (Direction::East, Direction::West)
-                    | (Direction::West, Direction::East)
-            ) {
+    for &direction in arr {
+        match (direction, result.last()) {
+            (Direction::North, Some(Direction::South))
+            | (Direction::South, Some(Direction::North))
+            | (Direction::East, Some(Direction::West))
+            | (Direction::West, Some(Direction::East)) => {
                 result.pop();
-            } else {
-                result.push(next_direction);
             }
-        } else {
-            result.push(next_direction);
+            _ => result.push(direction),
         }
     }
 
