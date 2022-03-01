@@ -4,6 +4,7 @@ mod are_they_the_same;
 mod assembler_interpreter_i;
 mod assembler_interpreter_ii;
 mod braking_well;
+mod cashier_space_shift;
 mod counting_duplicates;
 mod directions_reduction;
 mod ease_the_stockbroker;
