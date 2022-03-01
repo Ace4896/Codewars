@@ -23,7 +23,7 @@ git clone --recurse-submodules git@github.com:Ace4896/codewars.git
 
 For C#, the `Codewars.sln` solution can just be used as normal (preferably with Visual Studio or Rider).
 
-For JavaScript and TypeScript, use `npm test` to run the unit tests.
+For TypeScript, use `npm test` in the [`TypeScript`](./TypeScript/) directory to run the unit tests.
 
 For Python, some additional setup is required:
 
