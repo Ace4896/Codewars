@@ -17,6 +17,7 @@ mod last_digit_large_num;
 mod longest_vowel_chain;
 mod magnitude;
 mod meeting;
+mod rectangle_into_squares;
 mod reducing_by_steps;
 mod remove_first_and_last_character;
 mod smallest_unused_id;
