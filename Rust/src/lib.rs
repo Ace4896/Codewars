@@ -1,6 +1,7 @@
 #![allow(dead_code)]
 
 mod are_they_the_same;
+mod array_diff;
 mod assembler_interpreter_i;
 mod assembler_interpreter_ii;
 mod braking_well;
