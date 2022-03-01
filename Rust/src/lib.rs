@@ -25,6 +25,7 @@ mod smallest_unused_id;
 mod split_strings;
 mod strings_mix;
 mod sums_of_parts;
+mod trailing_zeroes;
 mod two_oldest_ages;
 mod url_shortener;
 mod vowel_count;
