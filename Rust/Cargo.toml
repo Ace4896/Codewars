@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 lazy_static = "1.4"
-regex = "1.5"
+regex = "1.5.6"
 
 [dev-dependencies]
-float_eq = "0.7"
+float_eq = "1.0"
