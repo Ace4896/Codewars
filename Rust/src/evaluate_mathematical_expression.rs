@@ -2,7 +2,7 @@
 //! - expr is the top-level production
 //! - e is the empty string
 //!
-//! ```
+//! ```ignore
 //! expr    ::= term expr_p
 //! expr_p  ::= '+' term expr_p
 //!           | '-' term expr_p
