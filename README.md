@@ -5,7 +5,7 @@ This repository contains my solutions to various [Codewars](https://www.codewars
 ## Requirements
 
 - C\#: .NET 6.0 or above
-  - As of 2022-01-31, Codewars uses C# 8.0.
+  - As of 2022-06-22, Codewars uses C# 10.0.
 - JavaScript/TypeScript: NodeJS v14.0 or above
   - As of 2022-02-26, Codewars uses NodeJS v14.0 and TypeScript 3.8.
 - Python: 3.8 or above
