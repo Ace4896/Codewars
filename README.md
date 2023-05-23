@@ -13,7 +13,7 @@ This repository contains my solutions to various [Codewars](https://www.codewars
 - Rust: 1.58 or above
   - As of 2022-02-24, Codewars uses Rust 1.58.
 - Visual Basic: .NET 6.0 or above
-  As of 2023-05-22, Codewars uses VB.NET 15.5.
+  - As of 2023-05-22, Codewars uses VB.NET 15.5.
 
 ## Usage
 
@@ -48,3 +48,5 @@ For Python, some additional setup is required:
   **NOTE**: The build artifacts can be safely removed after installation.
 
 For Rust, the `codewars` crate in the `Rust` directory can be used as normal.
+
+For Visual Basic the `Codewars.VB.sln` can just be used as normal.
