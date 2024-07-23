@@ -1,6 +1,7 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
+    using NUnit.Framework.Legacy;
 
     [TestFixture]
     public class ValidBraceTests
@@ -8,14 +9,14 @@ namespace Codewars.Tests
         [Test]
         public void Test1()
         {
-            Assert.AreEqual(true, Brace.validBraces("()"));
+            ClassicAssert.AreEqual(true, Brace.validBraces("()"));
         }
 
         [Test]
         public void Test2()
         {
 
-            Assert.AreEqual(false, Brace.validBraces("[(])"));
+            ClassicAssert.AreEqual(false, Brace.validBraces("[(])"));
         }
     }
 }

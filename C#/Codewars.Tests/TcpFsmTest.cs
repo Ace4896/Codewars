@@ -1,6 +1,7 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
+    using NUnit.Framework.Legacy;
 
     [TestFixture]
     public class TcpFsmTest
@@ -8,11 +9,11 @@ namespace Codewars.Tests
         [Test]
         public void SampleTests()
         {
-            Assert.AreEqual("CLOSE_WAIT", TCP.TraverseStates(new[] { "APP_ACTIVE_OPEN", "RCV_SYN_ACK", "RCV_FIN" }));
-            Assert.AreEqual("ESTABLISHED", TCP.TraverseStates(new[] { "APP_PASSIVE_OPEN", "RCV_SYN", "RCV_ACK" }));
-            Assert.AreEqual("LAST_ACK", TCP.TraverseStates(new[] { "APP_ACTIVE_OPEN", "RCV_SYN_ACK", "RCV_FIN", "APP_CLOSE" }));
-            Assert.AreEqual("SYN_SENT", TCP.TraverseStates(new[] { "APP_ACTIVE_OPEN" }));
-            Assert.AreEqual("ERROR", TCP.TraverseStates(new[] { "APP_PASSIVE_OPEN", "RCV_SYN", "RCV_ACK", "APP_CLOSE", "APP_SEND" }));
+            ClassicAssert.AreEqual("CLOSE_WAIT", TCP.TraverseStates(new[] { "APP_ACTIVE_OPEN", "RCV_SYN_ACK", "RCV_FIN" }));
+            ClassicAssert.AreEqual("ESTABLISHED", TCP.TraverseStates(new[] { "APP_PASSIVE_OPEN", "RCV_SYN", "RCV_ACK" }));
+            ClassicAssert.AreEqual("LAST_ACK", TCP.TraverseStates(new[] { "APP_ACTIVE_OPEN", "RCV_SYN_ACK", "RCV_FIN", "APP_CLOSE" }));
+            ClassicAssert.AreEqual("SYN_SENT", TCP.TraverseStates(new[] { "APP_ACTIVE_OPEN" }));
+            ClassicAssert.AreEqual("ERROR", TCP.TraverseStates(new[] { "APP_PASSIVE_OPEN", "RCV_SYN", "RCV_ACK", "APP_CLOSE", "APP_SEND" }));
         }
     }
 }

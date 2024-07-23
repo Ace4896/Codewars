@@ -1,6 +1,7 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
+    using NUnit.Framework.Legacy;
 
     [TestFixture]
     public class GetMiddleTest
@@ -8,10 +9,10 @@ namespace Codewars.Tests
         [Test]
         public void GenericTests()
         {
-            Assert.AreEqual("es", Kata.GetMiddle("test"));
-            Assert.AreEqual("t", Kata.GetMiddle("testing"));
-            Assert.AreEqual("dd", Kata.GetMiddle("middle"));
-            Assert.AreEqual("A", Kata.GetMiddle("A"));
+            ClassicAssert.AreEqual("es", Kata.GetMiddle("test"));
+            ClassicAssert.AreEqual("t", Kata.GetMiddle("testing"));
+            ClassicAssert.AreEqual("dd", Kata.GetMiddle("middle"));
+            ClassicAssert.AreEqual("A", Kata.GetMiddle("A"));
         }
     }
 }

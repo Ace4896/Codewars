@@ -1,6 +1,7 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
+    using NUnit.Framework.Legacy;
     using System.Numerics;
 
     public class FibonacciTest
@@ -44,7 +45,7 @@ namespace Codewars.Tests
         private static void testFib(long expected, int input)
         {
             BigInteger found = Fibonacci.fib(input);
-            Assert.AreEqual(new BigInteger(expected), found);
+            ClassicAssert.AreEqual(new BigInteger(expected), found);
         }
 
     }

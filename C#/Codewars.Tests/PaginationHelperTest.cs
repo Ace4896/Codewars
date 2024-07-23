@@ -1,6 +1,7 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
+    using NUnit.Framework.Legacy;
     using System.Collections.Generic;
 
     [TestFixture]
@@ -36,13 +37,13 @@ namespace Codewars.Tests
         [Test]
         public void ItemCountTest()
         {
-            Assert.AreEqual(24, helper.ItemCount);
+            ClassicAssert.AreEqual(24, helper.ItemCount);
         }
 
         [Test]
         public void PageCountTest()
         {
-            Assert.AreEqual(3, helper.PageCount);
+            ClassicAssert.AreEqual(3, helper.PageCount);
         }
     }
 }

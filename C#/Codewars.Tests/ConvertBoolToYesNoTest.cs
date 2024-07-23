@@ -1,6 +1,7 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
+    using NUnit.Framework.Legacy;
     using System;
 
     [TestFixture]
@@ -9,21 +10,21 @@ namespace Codewars.Tests
         [Test]
         public void boolToWordReturned1()
         {
-            Assert.AreEqual("Yes", Kata.boolToWord(true));
+            ClassicAssert.AreEqual("Yes", Kata.boolToWord(true));
             Console.WriteLine("Expected Yes");
         }
 
         [Test]
         public void boolToWordReturned2()
         {
-            Assert.AreEqual("No", Kata.boolToWord(false));
+            ClassicAssert.AreEqual("No", Kata.boolToWord(false));
             Console.WriteLine("Expected No");
         }
 
         [Test]
         public void boolToWordReturned3()
         {
-            Assert.AreEqual("Yes", Kata.boolToWord(true));
+            ClassicAssert.AreEqual("Yes", Kata.boolToWord(true));
             Console.WriteLine("Expected Yes");
         }
     }

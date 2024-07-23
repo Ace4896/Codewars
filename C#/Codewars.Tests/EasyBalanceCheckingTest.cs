@@ -1,6 +1,7 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
+    using NUnit.Framework.Legacy;
     using System;
 
     [TestFixture]
@@ -13,7 +14,7 @@ namespace Codewars.Tests
             Console.Write("ACTUAL:\n" + ans + "\n");
             Console.Write("EXPECT:\n" + exp + "\n");
             Console.Write("{0:D}\n", exp == ans);
-            Assert.AreEqual(exp, ans);
+            ClassicAssert.AreEqual(exp, ans);
             Console.WriteLine("-");
         }
         [Test]

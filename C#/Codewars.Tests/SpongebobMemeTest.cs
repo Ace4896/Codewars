@@ -1,6 +1,7 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
+    using NUnit.Framework.Legacy;
 
     [TestFixture]
     public class SpongebobMemeTest
@@ -14,7 +15,7 @@ namespace Codewars.Tests
         [Test, TestCaseSource(typeof(SpongebobMemeTest), "Basic_Test_Cases")]
         public void Basic_Test(string test, string expected)
         {
-            Assert.AreEqual(expected, Kata.SpongeMeme(test));
+            ClassicAssert.AreEqual(expected, Kata.SpongeMeme(test));
         }
     }
 }
