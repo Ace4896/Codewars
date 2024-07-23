@@ -40,11 +40,6 @@ For Python, some additional setup is required:
   ```bash
   pip install -r ./Python/requirements.txt
   ```
-- Finally, install `codewars-test` from the Git submodule:
-  ```bash
-  cd Python/python-test-framework
-  python setup.py install
-  ```
   **NOTE**: The build artifacts can be safely removed after installation.
 
 For Rust, the `codewars` crate in the `Rust` directory can be used as normal.
