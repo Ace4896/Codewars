@@ -1,11 +1,12 @@
 Imports NUnit.Framework
+Imports NUnit.Framework.Legacy
 
 Namespace Codewars.VB
     <TestFixture>
     Public Class OrderedCountOfCharactersTests
         <Test>
         Public Sub SampleTests()
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
             New List(Of Tuple(Of Char, Integer))() From {
                 Tuple.Create("a"c, 5),
                 Tuple.Create("b"c, 2),
@@ -15,7 +16,7 @@ Namespace Codewars.VB
             },
             Kata.OrderedCount("abracadabra")
         )
-            Assert.AreEqual(
+            ClassicAssert.AreEqual(
             New List(Of Tuple(Of Char, Integer))() From {
                 Tuple.Create("C"c, 1),
                 Tuple.Create("o"c, 1),

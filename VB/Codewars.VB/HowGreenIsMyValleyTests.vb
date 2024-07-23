@@ -1,4 +1,5 @@
 Imports NUnit.Framework
+Imports NUnit.Framework.Legacy
 
 Namespace Codewars.VB
     <TestFixture>
@@ -7,7 +8,7 @@ Namespace Codewars.VB
             Return "[" & String.Join(", ", list) & "]"
         End Function
         Sub testing(ByVal actual As String, ByVal exp As String)
-            Assert.AreEqual(exp, actual)
+            ClassicAssert.AreEqual(exp, actual)
         End Sub
 
         <Test>

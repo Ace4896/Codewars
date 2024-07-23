@@ -1,4 +1,5 @@
 Imports NUnit.Framework
+Imports NUnit.Framework.Legacy
 
 Namespace Codewars.VB
     <TestFixture>
@@ -14,7 +15,7 @@ Namespace Codewars.VB
         Sub testing(ByVal arr As String(), ByVal sexp As String)
             Dim actual = PartList.Partlist(arr)
             Dim sactual = Array2DToString(actual)
-            Assert.AreEqual(sexp, sactual)
+            ClassicAssert.AreEqual(sexp, sactual)
         End Sub
 
         <Test>

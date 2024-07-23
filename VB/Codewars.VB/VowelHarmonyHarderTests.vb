@@ -1,4 +1,5 @@
 ﻿Imports NUnit.Framework
+Imports NUnit.Framework.Legacy
 
 Namespace Codewars.VB
     <TestFixture>
@@ -27,7 +28,7 @@ Namespace Codewars.VB
                 Dim actual = Kata.Instrumental(input)
                 Dim expected = Tests(i, 1)
                 Console.WriteLine("{0} -> {1}", input, expected)
-                Assert.AreEqual(expected, actual)
+                ClassicAssert.AreEqual(expected, actual)
             Next
         End Sub
     End Class

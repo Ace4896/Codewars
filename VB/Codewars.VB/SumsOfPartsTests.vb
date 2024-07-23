@@ -1,11 +1,12 @@
 Imports NUnit.Framework
+Imports NUnit.Framework.Legacy
 
 Namespace Codewars.VB
     <TestFixture>
     Public Class SumsOfPartsTests
         Private Sub dotest(ByVal ls As Integer(), ByVal exp As Integer())
             Dim ans As Integer() = Parts.PartsSums(ls)
-            Assert.AreEqual(ans, exp, "")
+            ClassicAssert.AreEqual(ans, exp, "")
         End Sub
 
         <Test>

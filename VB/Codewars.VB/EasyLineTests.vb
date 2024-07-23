@@ -1,11 +1,12 @@
 Imports NUnit.Framework
+Imports NUnit.Framework.Legacy
 
 Namespace Codewars.VB
     <TestFixture>
     Public Class EasyLineTests
         Sub testing(ByVal n As Integer, ByVal sexp As String)
             Dim sactual As String = Easyline.EasyLine(n).ToString()
-            Assert.AreEqual(sexp, sactual)
+            ClassicAssert.AreEqual(sexp, sactual)
         End Sub
 
         <Test>
