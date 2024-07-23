@@ -9,11 +9,11 @@
         [Test]
         public void HumanReadableTest()
         {
-            ClassicAssert.AreEqual("00:00:00", TimeFormat.GetReadableTime(0));
-            ClassicAssert.AreEqual("00:00:05", TimeFormat.GetReadableTime(5));
-            ClassicAssert.AreEqual("00:01:00", TimeFormat.GetReadableTime(60));
-            ClassicAssert.AreEqual("23:59:59", TimeFormat.GetReadableTime(86399));
-            ClassicAssert.AreEqual("99:59:59", TimeFormat.GetReadableTime(359999));
+            Assert.That(TimeFormat.GetReadableTime(0), Is.EqualTo("00:00:00"));
+            Assert.That(TimeFormat.GetReadableTime(5), Is.EqualTo("00:00:05"));
+            Assert.That(TimeFormat.GetReadableTime(60), Is.EqualTo("00:01:00"));
+            Assert.That(TimeFormat.GetReadableTime(86399), Is.EqualTo("23:59:59"));
+            Assert.That(TimeFormat.GetReadableTime(359999), Is.EqualTo("99:59:59"));
         }
     }
 }

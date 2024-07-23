@@ -10,7 +10,7 @@ namespace Codewars.Tests
         public void Test1()
         {
             int[] lst = new int[] { 12, 15 };
-            ClassicAssert.AreEqual("(2 12)(3 27)(5 15)", SumOfDivided.sumOfDivided(lst));
+            Assert.That(SumOfDivided.sumOfDivided(lst), Is.EqualTo("(2 12)(3 27)(5 15)"));
         }
     }
 }

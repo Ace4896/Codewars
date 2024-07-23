@@ -14,7 +14,7 @@ namespace Codewars.Tests
             Console.Write("ACTUAL:\n" + ans + "\n");
             Console.Write("EXPECT:\n" + exp + "\n");
             Console.Write("{0:D}\n", exp == ans);
-            ClassicAssert.AreEqual(exp, ans);
+            Assert.That(ans, Is.EqualTo(exp));
             Console.WriteLine("-");
         }
         [Test]

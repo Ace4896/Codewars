@@ -25,7 +25,7 @@ namespace Codewars.Tests
             var moves = new string[] { "up", "left", "right", "left", "left" };
             var expected = new string[] { "Ryu", "Vega", "Ryu", "Vega", "Balrog" };
 
-            CollectionAssert.AreEqual(expected, kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves));
+            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Codewars.Tests
             var moves = new string[] { };
             var expected = new string[] { };
 
-            CollectionAssert.AreEqual(expected, kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves));
+            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Codewars.Tests
             var moves = new string[] { "left", "left", "left", "left", "left", "left", "left", "left" };
             var expected = new string[] { "Vega", "Balrog", "Guile", "Blanka", "E.Honda", "Ryu", "Vega", "Balrog" };
 
-            CollectionAssert.AreEqual(expected, kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves));
+            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Codewars.Tests
             var moves = new string[] { "right", "right", "right", "right", "right", "right", "right", "right" };
             var expected = new string[] { "E.Honda", "Blanka", "Guile", "Balrog", "Vega", "Ryu", "E.Honda", "Blanka" };
 
-            CollectionAssert.AreEqual(expected, kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves));
+            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Codewars.Tests
             var moves = new string[] { "up", "left", "down", "right", "up", "left", "down", "right" };
             var expected = new string[] { "Ryu", "Vega", "M.Bison", "Ken", "Ryu", "Vega", "M.Bison", "Ken" };
 
-            CollectionAssert.AreEqual(expected, kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves));
+            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace Codewars.Tests
             var moves = new string[] { "down", "down", "down", "down" };
             var expected = new string[] { "Ken", "Ken", "Ken", "Ken" };
 
-            CollectionAssert.AreEqual(expected, kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves));
+            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -79,7 +79,7 @@ namespace Codewars.Tests
             var moves = new string[] { "up", "up", "up", "up" };
             var expected = new string[] { "Ryu", "Ryu", "Ryu", "Ryu" };
 
-            CollectionAssert.AreEqual(expected, kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves));
+            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
         }
     }
 }

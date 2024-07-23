@@ -15,7 +15,7 @@ namespace Codewars.Tests
         [Test, TestCaseSource(typeof(SpongebobMemeTest), "Basic_Test_Cases")]
         public void Basic_Test(string test, string expected)
         {
-            ClassicAssert.AreEqual(expected, Kata.SpongeMeme(test));
+            Assert.That(Kata.SpongeMeme(test), Is.EqualTo(expected));
         }
     }
 }

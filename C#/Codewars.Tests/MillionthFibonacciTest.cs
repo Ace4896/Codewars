@@ -45,7 +45,7 @@ namespace Codewars.Tests
         private static void testFib(long expected, int input)
         {
             BigInteger found = Fibonacci.fib(input);
-            ClassicAssert.AreEqual(new BigInteger(expected), found);
+            Assert.That(found, Is.EqualTo(new BigInteger(expected)));
         }
 
     }

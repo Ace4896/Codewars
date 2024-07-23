@@ -9,11 +9,11 @@ namespace Codewars.Tests
         [Test]
         public void BasicTests()
         {
-            ClassicAssert.AreEqual(true, Kata.Check(new object[] { 66, 101 }, 66));
-            ClassicAssert.AreEqual(true, Kata.Check(new object[] { 80, 117, 115, 104, 45, 85, 112, 115 }, 45));
+            Assert.That(Kata.Check(new object[] { 66, 101 }, 66), Is.EqualTo(true));
+            Assert.That(Kata.Check(new object[] { 80, 117, 115, 104, 45, 85, 112, 115 }, 45), Is.EqualTo(true));
 
-            ClassicAssert.AreEqual(true, Kata.Check(new object[] { 't', 'e', 's', 't' }, 'e'));
-            ClassicAssert.AreEqual(false, Kata.Check(new object[] { "what", "a", "great", "kata" }, "kat"));
+            Assert.That(Kata.Check(new object[] { 't', 'e', 's', 't' }, 'e'), Is.EqualTo(true));
+            Assert.That(Kata.Check(new object[] { "what", "a", "great", "kata" }, "kat"), Is.EqualTo(false));
         }
     }
 }

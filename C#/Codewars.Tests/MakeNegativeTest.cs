@@ -9,8 +9,8 @@ namespace Codewars.Tests
         [Test]
         public void Test1()
         {
-            ClassicAssert.AreEqual(-42, Kata.MakeNegative(42));
-            ClassicAssert.AreEqual(-727, Kata.MakeNegative(-727));
+            Assert.That(Kata.MakeNegative(42), Is.EqualTo(-42));
+            Assert.That(Kata.MakeNegative(-727), Is.EqualTo(-727));
         }
     }
 }

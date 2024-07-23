@@ -9,12 +9,12 @@
         [Test]
         public void BasicTests()
         {
-            ClassicAssert.AreEqual(6, Kata.SumGroups(new int[] { 2, 1, 2, 2, 6, 5, 0, 2, 0, 5, 5, 7, 7, 4, 3, 3, 9 }));
-            ClassicAssert.AreEqual(5, Kata.SumGroups(new int[] { 2, 1, 2, 2, 6, 5, 0, 2, 0, 3, 3, 3, 9, 2 }));
-            ClassicAssert.AreEqual(1, Kata.SumGroups(new int[] { 1 }));
-            ClassicAssert.AreEqual(1, Kata.SumGroups(new int[] { 2 }));
-            ClassicAssert.AreEqual(2, Kata.SumGroups(new int[] { 1, 2 }));
-            ClassicAssert.AreEqual(1, Kata.SumGroups(new int[] { 1, 1, 2, 2 }));
+            Assert.That(Kata.SumGroups(new int[] { 2, 1, 2, 2, 6, 5, 0, 2, 0, 5, 5, 7, 7, 4, 3, 3, 9 }), Is.EqualTo(6));
+            Assert.That(Kata.SumGroups(new int[] { 2, 1, 2, 2, 6, 5, 0, 2, 0, 3, 3, 3, 9, 2 }), Is.EqualTo(5));
+            Assert.That(Kata.SumGroups(new int[] { 1 }), Is.EqualTo(1));
+            Assert.That(Kata.SumGroups(new int[] { 2 }), Is.EqualTo(1));
+            Assert.That(Kata.SumGroups(new int[] { 1, 2 }), Is.EqualTo(2));
+            Assert.That(Kata.SumGroups(new int[] { 1, 1, 2, 2 }), Is.EqualTo(1));
         }
     }
 }

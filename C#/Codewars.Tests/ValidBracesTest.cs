@@ -9,14 +9,14 @@ namespace Codewars.Tests
         [Test]
         public void Test1()
         {
-            ClassicAssert.AreEqual(true, Brace.validBraces("()"));
+            Assert.That(Brace.validBraces("()"), Is.EqualTo(true));
         }
 
         [Test]
         public void Test2()
         {
 
-            ClassicAssert.AreEqual(false, Brace.validBraces("[(])"));
+            Assert.That(Brace.validBraces("[(])"), Is.EqualTo(false));
         }
     }
 }

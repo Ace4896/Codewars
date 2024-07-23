@@ -37,13 +37,13 @@ namespace Codewars.Tests
         [Test]
         public void ItemCountTest()
         {
-            ClassicAssert.AreEqual(24, helper.ItemCount);
+            Assert.That(helper.ItemCount, Is.EqualTo(24));
         }
 
         [Test]
         public void PageCountTest()
         {
-            ClassicAssert.AreEqual(3, helper.PageCount);
+            Assert.That(helper.PageCount, Is.EqualTo(3));
         }
     }
 }

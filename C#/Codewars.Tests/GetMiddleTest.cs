@@ -9,10 +9,10 @@ namespace Codewars.Tests
         [Test]
         public void GenericTests()
         {
-            ClassicAssert.AreEqual("es", Kata.GetMiddle("test"));
-            ClassicAssert.AreEqual("t", Kata.GetMiddle("testing"));
-            ClassicAssert.AreEqual("dd", Kata.GetMiddle("middle"));
-            ClassicAssert.AreEqual("A", Kata.GetMiddle("A"));
+            Assert.That(Kata.GetMiddle("test"), Is.EqualTo("es"));
+            Assert.That(Kata.GetMiddle("testing"), Is.EqualTo("t"));
+            Assert.That(Kata.GetMiddle("middle"), Is.EqualTo("dd"));
+            Assert.That(Kata.GetMiddle("A"), Is.EqualTo("A"));
         }
     }
 }

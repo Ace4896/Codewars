@@ -10,21 +10,21 @@ namespace Codewars.Tests
         [Test]
         public void boolToWordReturned1()
         {
-            ClassicAssert.AreEqual("Yes", Kata.boolToWord(true));
+            Assert.That(Kata.boolToWord(true), Is.EqualTo("Yes"));
             Console.WriteLine("Expected Yes");
         }
 
         [Test]
         public void boolToWordReturned2()
         {
-            ClassicAssert.AreEqual("No", Kata.boolToWord(false));
+            Assert.That(Kata.boolToWord(false), Is.EqualTo("No"));
             Console.WriteLine("Expected No");
         }
 
         [Test]
         public void boolToWordReturned3()
         {
-            ClassicAssert.AreEqual("Yes", Kata.boolToWord(true));
+            Assert.That(Kata.boolToWord(true), Is.EqualTo("Yes"));
             Console.WriteLine("Expected Yes");
         }
     }

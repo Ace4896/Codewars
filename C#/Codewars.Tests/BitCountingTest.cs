@@ -9,11 +9,11 @@ namespace Codewars.Tests
         [Test]
         public void CountBits()
         {
-            ClassicAssert.AreEqual(0, Kata.CountBits(0));
-            ClassicAssert.AreEqual(1, Kata.CountBits(4));
-            ClassicAssert.AreEqual(3, Kata.CountBits(7));
-            ClassicAssert.AreEqual(2, Kata.CountBits(9));
-            ClassicAssert.AreEqual(2, Kata.CountBits(10));
+            Assert.That(Kata.CountBits(0), Is.EqualTo(0));
+            Assert.That(Kata.CountBits(4), Is.EqualTo(1));
+            Assert.That(Kata.CountBits(7), Is.EqualTo(3));
+            Assert.That(Kata.CountBits(9), Is.EqualTo(2));
+            Assert.That(Kata.CountBits(10), Is.EqualTo(2));
         }
     }
 }
