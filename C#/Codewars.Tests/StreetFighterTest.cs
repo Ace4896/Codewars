@@ -1,7 +1,6 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
-    using NUnit.Framework.Legacy;
 
     [TestFixture]
     public class StreetFighterTest
@@ -11,11 +10,11 @@ namespace Codewars.Tests
 
         public StreetFighterTest()
         {
-            fighters = new string[][]
-            {
-              new string[] { "Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega" },
-              new string[] { "Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison" },
-            };
+            fighters =
+            [
+              ["Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega"],
+              ["Ken", "Chun Li", "Zangief", "Dhalsim", "Sagat", "M.Bison"],
+            ];
         }
 
 
@@ -25,7 +24,7 @@ namespace Codewars.Tests
             var moves = new string[] { "up", "left", "right", "left", "left" };
             var expected = new string[] { "Ryu", "Vega", "Ryu", "Vega", "Balrog" };
 
-            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
+            Assert.That(kata.StreetFighterSelection(fighters, [0, 0], moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -34,7 +33,7 @@ namespace Codewars.Tests
             var moves = new string[] { };
             var expected = new string[] { };
 
-            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
+            Assert.That(kata.StreetFighterSelection(fighters, [0, 0], moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -43,7 +42,7 @@ namespace Codewars.Tests
             var moves = new string[] { "left", "left", "left", "left", "left", "left", "left", "left" };
             var expected = new string[] { "Vega", "Balrog", "Guile", "Blanka", "E.Honda", "Ryu", "Vega", "Balrog" };
 
-            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
+            Assert.That(kata.StreetFighterSelection(fighters, [0, 0], moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -52,7 +51,7 @@ namespace Codewars.Tests
             var moves = new string[] { "right", "right", "right", "right", "right", "right", "right", "right" };
             var expected = new string[] { "E.Honda", "Blanka", "Guile", "Balrog", "Vega", "Ryu", "E.Honda", "Blanka" };
 
-            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
+            Assert.That(kata.StreetFighterSelection(fighters, [0, 0], moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -61,7 +60,7 @@ namespace Codewars.Tests
             var moves = new string[] { "up", "left", "down", "right", "up", "left", "down", "right" };
             var expected = new string[] { "Ryu", "Vega", "M.Bison", "Ken", "Ryu", "Vega", "M.Bison", "Ken" };
 
-            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
+            Assert.That(kata.StreetFighterSelection(fighters, [0, 0], moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -70,7 +69,7 @@ namespace Codewars.Tests
             var moves = new string[] { "down", "down", "down", "down" };
             var expected = new string[] { "Ken", "Ken", "Ken", "Ken" };
 
-            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
+            Assert.That(kata.StreetFighterSelection(fighters, [0, 0], moves), Is.EqualTo(expected).AsCollection);
         }
 
         [Test]
@@ -79,7 +78,7 @@ namespace Codewars.Tests
             var moves = new string[] { "up", "up", "up", "up" };
             var expected = new string[] { "Ryu", "Ryu", "Ryu", "Ryu" };
 
-            Assert.That(kata.StreetFighterSelection(fighters, new int[] { 0, 0 }, moves), Is.EqualTo(expected).AsCollection);
+            Assert.That(kata.StreetFighterSelection(fighters, [0, 0], moves), Is.EqualTo(expected).AsCollection);
         }
     }
 }

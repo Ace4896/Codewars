@@ -1,7 +1,6 @@
 ﻿namespace Codewars.Tests
 {
     using NUnit.Framework;
-    using NUnit.Framework.Legacy;
 
     [TestFixture]
     public class HumanReadableTimeTest

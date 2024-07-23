@@ -37,16 +37,16 @@ namespace Codewars
         private static readonly Regex STRING_REGEX = new Regex(@""".*""", RegexOptions.Compiled | RegexOptions.Singleline);
         private static readonly Regex IDENT_REGEX = new Regex(@"[a-zA-Z_\$][a-zA-Z0-9_\$]*", RegexOptions.Compiled);
 
-        private static readonly string[] BOOLEAN = { "true", "false" };
+        private static readonly string[] BOOLEAN = ["true", "false"];
         private static readonly char[] OPERATORS =
-        {
+        [
             '+', '-', '*', '/', '%', '(', ')', '='
-        };
+        ];
 
         private static readonly string[] KEYWORDS =
-        {
+        [
             "if", "else", "for", "while", "return", "func", "break"
-        };
+        ];
 
         private readonly string _buffer;    // Input string
         private Token _current;             // The current token

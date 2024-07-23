@@ -1,7 +1,6 @@
 namespace Codewars.Tests
 {
     using NUnit.Framework;
-    using NUnit.Framework.Legacy;
 
     [TestFixture]
     public class CommonDenominatorTest
@@ -39,9 +38,9 @@ namespace Codewars.Tests
         [Test]
         public void ComputeLCM_WithMultipleNumbers_Works()
         {
-            Assert.That(Fracts.ComputeLCM(new long[] { 4, 6, 12 }), Is.EqualTo(12));
-            Assert.That(Fracts.ComputeLCM(new long[] { 2, 10, 25 }), Is.EqualTo(50));
-            Assert.That(Fracts.ComputeLCM(new long[] { 3, 5, 7 }), Is.EqualTo(105));
+            Assert.That(Fracts.ComputeLCM([4, 6, 12]), Is.EqualTo(12));
+            Assert.That(Fracts.ComputeLCM([2, 10, 25]), Is.EqualTo(50));
+            Assert.That(Fracts.ComputeLCM([3, 5, 7]), Is.EqualTo(105));
         }
     }
 }

@@ -7,14 +7,14 @@ namespace Codewars
 
     public class Dinglemouse
     {
-        private static readonly string[] belowTwenty = {
+        private static readonly string[] belowTwenty = [
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
-        };
+        ];
 
-        private static readonly string[] tens = {
+        private static readonly string[] tens = [
             "", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
-        };
+        ];
 
         public static int[] Sort(int[] array)
         {
